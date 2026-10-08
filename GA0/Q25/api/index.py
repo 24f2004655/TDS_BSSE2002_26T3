@@ -67,4 +67,4 @@ def latency(request: LatencyRequest):
             ),
         }
 
-    return result
+    return {"regions": result}
