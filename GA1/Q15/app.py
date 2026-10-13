@@ -75,8 +75,8 @@ load()
 
 def parse(q):
     t = q.lower()
-    region = next((r for r in REGIONS if r.lower() in t), None)
-    product = next((p for p in PRODUCTS if p.lower() in t), None)
+    region = next((r for r in REGIONS if re.search(rf"\b{re.escape(r)}\b", q, re.I)), None)
+    product = next((p for p in PRODUCTS if re.search(rf"\b{re.escape(p)}\b", q, re.I)), None)
     m = re.search(r"(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+(\d{4})", t)
     if not m:
         m = re.search(r"(\d{4})-(\d{1,2})", t)
