@@ -56,6 +56,8 @@ async def endpoint(request: Request):
 
 app.post("/")(endpoint)
 app.post("/mcp")(endpoint)
+app.post("/mcp/")(endpoint)
+app.post("/{full_path:path}")(endpoint)
 
 @app.get("/")
 def root():
