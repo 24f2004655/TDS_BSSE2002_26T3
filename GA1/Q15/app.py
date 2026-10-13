@@ -137,19 +137,20 @@ def answer(q):
         for r in pool:
             sums[r["customer"]] = sums.get(r["customer"], 0) + r["_usd"]
         return max(sums, key=sums.get) if sums else None
-    # status scope
+    # status scope: money-like questions (incl. avg worth/value) default to paid
+    money = any(w in t for w in ["revenue", "sales", "refund", "usd", "$", "dollar", "average", "avg", "mean", "worth", "value", "paid"])
     if f["refund"]:
         pool = rows  # already refunded
     elif f["void"]:
         pool = rows
-    elif f["count"] and not any(w in t for w in ["revenue", "sales", "refund", "usd", "$"]):
+    elif f["count"] and not money:
         pool = rows  # plain count = all current rows matching filters
     else:
         pool = [r for r in rows if r["status"] == "paid"]
-    if f["count"]:
-        return len(pool)
     if f["avg"]:
         return round(sum(r["_usd"] for r in pool) / len(pool), 2) if pool else 0
+    if f["count"]:
+        return len(pool)
     return round(sum(r["_usd"] for r in pool), 2)
 
 async def handle(request: Request):
