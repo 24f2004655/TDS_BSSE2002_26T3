@@ -149,6 +149,10 @@ def answer(q):
         pool = [r for r in rows if r["status"] == "paid"]
     if f["avg"]:
         return round(sum(r["_usd"] for r in pool) / len(pool), 2) if pool else 0
+    if "customer" in t and any(w in t for w in ["distinct", "unique", "different"]):
+        return len(set(r["customer"] for r in pool))
+    if "product" in t and any(w in t for w in ["distinct", "unique", "different"]):
+        return len(set(r["product"] for r in pool))
     if f["count"]:
         return len(pool)
     return round(sum(r["_usd"] for r in pool), 2)
