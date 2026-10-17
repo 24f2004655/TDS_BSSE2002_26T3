@@ -1,4 +1,9 @@
-# Q10 — Resolve 12-Factor Config Precedence
+# Resolve 12-Factor Config Precedence — **exam question 5**
+
+> Folder-name warning: this is question **5** on the exam page, not question 10.
+> The folder kept its old name because the Render service is already pointed at
+> `GA2/Q10`; changing it would have meant reconfiguring a working deploy.
+> Question 10 (the local-LLM invoice extractor) lives in `GA2/Q10-extract`.
 
 Answer: the deployed endpoint URL, `https://<app>/effective-config`.
 
