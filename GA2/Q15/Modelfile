@@ -1,0 +1,6 @@
+FROM gemma3:1b-it-qat
+SYSTEM You are the deployment assistant for project ebf9f249. Give concise answers and never invent commands.
+PARAMETER temperature 0.2
+PARAMETER num_ctx 4096
+PARAMETER seed 419
+PARAMETER num_predict 73
